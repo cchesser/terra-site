@@ -31,26 +31,8 @@ module.exports = {
           loader: 'css-loader',
           options: {
             sourceMap: true,
-            importLoaders: 2,
+            importLoaders: 1,
             localIdentName: '[name]__[local]___[hash:base64:5]',
-          },
-        }, {
-          loader: 'postcss-loader',
-          options: {
-            plugins() {
-              return [
-                Autoprefixer({
-                  browsers: [
-                    'ie >= 10',
-                    'last 2 versions',
-                    'last 2 android versions',
-                    'last 2 and_chr versions',
-                    'iOS >= 10',
-                  ],
-                }),
-                rtl(),
-              ];
-            },
           },
         },
         {
@@ -83,6 +65,16 @@ module.exports = {
       test: /\.css$/,
       log: false,
       plugins: [
+        Autoprefixer({
+          browsers: [
+            'ie >= 10',
+            'last 2 versions',
+            'last 2 android versions',
+            'last 2 and_chr versions',
+            'iOS >= 10',
+          ],
+        }),
+        rtl(),
         PostCSSCustomProperties({ preserve: true }),
       ],
     }),
